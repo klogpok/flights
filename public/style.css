@@ -1,0 +1,63 @@
+:root {
+    box-sizing: border-box;
+    font-size: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f2f6f8;
+}
+
+.container {
+    width: 70%;
+    margin: 50px auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+table caption h1 {
+    font-size: 3rem;
+}
+
+table th {
+    width: 150px;
+    background: #042e62;
+    color: #f1a931;
+    font: bold 1.6em arial;
+    height: 31px;
+    padding-top: 4px;
+    border: 1px solid #042e62;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+table th label {
+    cursor: pointer;
+}
+
+table th.active {
+    color: #fff;
+}
+
+table tbody tr {
+    background-color: #fff;
+    font-size: 1.4em;
+}
+
+table tbody tr:nth-child(2n) {
+    background-color: #ddd;
+}
+
+table tbody td {
+    width: 150px;
+    padding: 5px 3px 5px 6px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+span.arrowSort:hover {
+    color: #fff;
+}

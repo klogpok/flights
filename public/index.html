@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Flights</title>
+    </head>
+    <body>
+        <div class="container">
+            <table id="arrivalTable">
+                <caption>
+                    <h1>Arrivals</h1>
+                </caption>
+                <thead>
+                    <tr role="row" class="even">
+                        <th
+                            class="thFlight no-sort sorting_disabled"
+                            role="columnheader"
+                            data-sortexpression="by"
+                            rowspan="1"
+                            colspan="1"
+                        >
+                            <span class="divSortTable">
+                                <label title="Operating airline">Airline</label>
+                                <span class="arrowSort">&darr;</span>
+                            </span>
+                        </th>
+                        <th
+                            class="thFlight no-sort sorting_disabled"
+                            data-sortexpression="id"
+                            role="columnheader"
+                            rowspan="1"
+                            colspan="1"
+                        >
+                            <span class="divSortTable">
+                                <label title="Operating airline">Flight</label>
+                                <span class="arrowSort">&darr;</span>
+                            </span>
+                        </th>
+                        <th
+                            class="thFlight no-sort sorting_disabled"
+                            data-sortexpression="from"
+                            role="columnheader"
+                            rowspan="1"
+                            colspan="1"
+                        >
+                            <span class="divSortTable">
+                                <label title="Operating airline">Coming From</label>
+                                <span class="arrowSort">&darr;</span>
+                            </span>
+                        </th>
+                        <th
+                            class="thFlight no-sort active sorting_disabled"
+                            data-sortexpression="arrival"
+                            role="columnheader"
+                            rowspan="1"
+                            colspan="1"
+                        >
+                            <span class="divSortTable">
+                                <label title="Operating airline">Scheduled Time</label>
+                                <span class="arrowSort">&darr;</span>
+                            </span>
+                        </th>
+                        <th
+                            class="thFlight no-sort sorting_disabled"
+                            data-sortexpression="terminal"
+                            role="columnheader"
+                            rowspan="1"
+                            colspan="1"
+                        >
+                            <span class="divSortTable">
+                                <label title="Operating airline">Terminal</label>
+                                <span class="arrowSort">&darr;</span>
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="arrivalTableBody"></tbody>
+            </table>
+        </div>
+    </body>
+    <script src="app.js"></script>
+</html>
