@@ -1,9 +1,9 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
-const url = require('url');
+//const url = require('url');
 
-const server = http.createServer((req, res) => {
+const server = http.createServer((req, res) => { 
     let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
     let extname = path.extname(filePath);
     let contentType = 'text/html';
