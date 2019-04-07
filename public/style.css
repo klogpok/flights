@@ -7,14 +7,34 @@ body {
     margin: 0;
     padding: 0;
     background: #f2f6f8;
+    display: flex;
+    justify-content: center;
+}
+.column {
+    display: flex;
+    flex-direction: column;
 }
 
-.container {
+.hidden {
+    display: none;
+}
+.row {
+    position: fixed;
+    justify-content: center;
+}
+
+button{
+    width: 90px;
+    height: 30px;
+}
+
+section{
+    margin: auto;
     width: 70%;
     margin: 50px auto;
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: center; 
 }
 
 table caption h1 {
