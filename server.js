@@ -1,6 +1,7 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+const url = require('url');
 
 const server = http.createServer((req, res) => {
     let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
@@ -34,7 +35,7 @@ const server = http.createServer((req, res) => {
                 res.writeHead(500);
                 res.end(`Server Error: ${err.code}`);
             }
-        } else {
+        } else {            
             res.writeHead(200, { 'Content-Type': contentType });
             res.end(content, 'utf8');
         }
