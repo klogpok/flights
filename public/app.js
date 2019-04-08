@@ -1,3 +1,17 @@
+function toggle(type) {
+    switch (type) {
+        case 'arri':
+            document.querySelector('#dep-section').classList.add('hidden')
+            document.querySelector('#arri-section').classList.remove('hidden')
+            break;
+
+        case 'dep':
+            document.querySelector('#arri-section').classList.add('hidden')
+            document.querySelector('#dep-section').classList.remove('hidden')
+            break;
+    }
+};
+
 const elTableBody = document.querySelector('#arrivalTableBody');
 const thFlight = document.querySelectorAll('.thFlight');
 let elString = '';
