@@ -19,10 +19,12 @@ let keySort = 'arrival';
 let flights = [];
 
 [...thFlight].forEach(flight => {
-    flight.addEventListener('click', function(event) {
+    flight.addEventListener('click', function (event) {
         if (this.tagName === 'TH') {
             removeActive();
             this.style.color = '#fff';
+            let elSort = this.children[0].children[1];
+            console.log(elSort);
             flights = sortByKey(flights, this.dataset.sortexpression);
             renderTable(flights);
         }
@@ -68,8 +70,10 @@ const removeFlights = () => {
     elTableBody.innerHTML = '';
 };
 
-const sortByKey = (obj, key) => {
-    return obj.sort((a, b) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0));
+const sortByKey = (obj, key, order = 'ASC') => {
+    return order === 'ASC'
+        ? obj.sort((a, b) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0))
+        : obj.sort((a, b) => (a[key] < b[key] ? 1 : b[key] < a[key] ? -1 : 0))
 };
 
 getFlights();
