@@ -12,6 +12,7 @@ body {
     background-image: url('./img/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    user-select: none;
 }
 
 .title {

@@ -61,6 +61,17 @@ const sortEventHandler = (table, thFlight, destination) => {
     });
 };
 
+const removeActive = (thFlight, activeTh) => {
+    [...thFlight].forEach(th => {
+        if (th !== activeTh) {
+            th.style.color = '#f1a931';
+            th.children[0].children[1].innerHTML = '&uarr;';
+        } else {
+            th.style.color = '#fff';
+        }
+    });
+};
+
 const toggleOrder = currentTh => {
     let elSort = currentTh.children[0].children[1];
     let order = '';
@@ -75,13 +86,12 @@ const toggleOrder = currentTh => {
     return order;
 };
 
-const removeActive = (thFlight, activeTh) => {
-    [...thFlight].forEach(th => {
-        if (th !== activeTh) {
-            th.style.color = '#f1a931';
-            th.children[0].children[1].innerHTML = '&uarr;';
-        } else {
-            th.style.color = '#fff';
+const setDefaultTh = () => {
+    [...currentThs].forEach(th => {
+        if (th.dataset.sortexpression === 'arrival') {
+            removeActive(currentThs, th);
+            flights = sortByKey(flights, th.dataset.sortexpression, toggleOrder(th));
+            renderTable(currentTable, flights, currentDestination);
         }
     });
 };
@@ -169,6 +179,7 @@ const sortByKey = (obj, key, order = 'ASC') => {
 };
 
 const init = (tableBody, thFlight, destination, query = '') => {
+    //setDefaultTh();
     sortEventHandler(tableBody, thFlight, destination);
     getFlights(tableBody, destination, query);
 };
