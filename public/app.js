@@ -9,14 +9,13 @@ const searchCityInput = document.querySelector('#citySearch');
 const btnSearch = document.querySelector('#btn-search');
 const btnClear = document.querySelector('#btn-clear');
 
-console.log(btnClear);
-
 let elString = '';
 let keySort = 'arrival';
 let flights = [];
 let currentTable = elTableArrivalsBody;
 let currentThs = thFlightArrival;
 let currentDestination = 'from';
+let searchValue = '';
 
 const toggleTables = () => {
     [...toggleSectionButtons].forEach(button => {
@@ -53,7 +52,6 @@ const clearActiveSection = () => {
 const sortEventHandler = (table, thFlight, destination) => {
     [...thFlight].forEach(flight => {
         flight.addEventListener('click', function() {
-            console.log(this);
             if (this.tagName === 'TH') {
                 removeActive(thFlight, this);
                 flights = sortByKey(flights, this.dataset.sortexpression, toggleOrder(this));
@@ -88,15 +86,31 @@ const removeActive = (thFlight, activeTh) => {
     });
 };
 
-const getFlights = (table, destination) => {
+const getFlights = (table, destination, query) => {
     fetch('./flights.json')
         .then(data => data.json())
         .then(res => {
             if (res.length) {
                 if (destination === 'from') {
-                    flights = res.filter(flight => flight.to.toLowerCase() === 'tel-aviv');
+                    if (query) {
+                        flights = res.filter(
+                            flight =>
+                                flight.to.toLowerCase() === 'tel-aviv' &&
+                                flight.from.toLowerCase() === query.toLowerCase()
+                        );
+                    } else {
+                        flights = res.filter(flight => flight.to.toLowerCase() === 'tel-aviv');
+                    }
                 } else {
-                    flights = res.filter(flight => flight.to.toLowerCase() !== 'tel-aviv');
+                    if (query) {
+                        flights = res.filter(
+                            flight =>
+                                flight.to.toLowerCase() !== 'tel-aviv' &&
+                                flight.to.toLowerCase() === query.toLowerCase()
+                        );
+                    } else {
+                        flights = res.filter(flight => flight.to.toLowerCase() !== 'tel-aviv');
+                    }
                 }
                 sortedRes = sortByKey(flights, keySort);
                 renderTable(table, sortedRes, destination);
@@ -126,18 +140,26 @@ const renderTable = (table, flights, destination) => {
 
 const removeFlights = table => {
     table.innerHTML = '';
-    console.log(`remove table`);
+};
+
+searchCityInput.onchange = event => {
+    if (event.target.value) {
+        searchValue = event.target.value;
+    }
 };
 
 btnClear.addEventListener('click', () => {
+    searchValue = '';
     init(currentTable, currentThs, currentDestination);
 });
 
 btnSearch.addEventListener('click', event => {
-    console.log(event.target.value);
+    if (searchValue) {
+        init(currentTable, currentThs, currentDestination, searchValue);
+        searchValue = '';
+        searchCityInput.value = '';
+    }
 });
-
-const citySearchOnChange = () => {};
 
 // Helpers
 const sortByKey = (obj, key, order = 'ASC') => {
@@ -146,11 +168,10 @@ const sortByKey = (obj, key, order = 'ASC') => {
         : obj.sort((a, b) => (a[key] < b[key] ? 1 : b[key] < a[key] ? -1 : 0));
 };
 
-const init = (tableBody, thFlight, destination) => {
+const init = (tableBody, thFlight, destination, query = '') => {
     sortEventHandler(tableBody, thFlight, destination);
-    getFlights(tableBody, destination);
+    getFlights(tableBody, destination, query);
 };
 
 init(currentTable, currentThs, currentDestination);
 toggleTables();
-clearBtnHandler();
