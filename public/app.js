@@ -1,16 +1,16 @@
 function toggle(type) {
     switch (type) {
         case 'arri':
-            document.querySelector('#dep-section').classList.add('hidden')
-            document.querySelector('#arri-section').classList.remove('hidden')
+            document.querySelector('#dep-section').classList.add('hidden');
+            document.querySelector('#arri-section').classList.remove('hidden');
             break;
 
         case 'dep':
-            document.querySelector('#arri-section').classList.add('hidden')
-            document.querySelector('#dep-section').classList.remove('hidden')
+            document.querySelector('#arri-section').classList.add('hidden');
+            document.querySelector('#dep-section').classList.remove('hidden');
             break;
     }
-};
+}
 
 const elTableBody = document.querySelector('#arrivalTableBody');
 const thFlight = document.querySelectorAll('.thFlight');
@@ -19,13 +19,21 @@ let keySort = 'arrival';
 let flights = [];
 
 [...thFlight].forEach(flight => {
-    flight.addEventListener('click', function (event) {
+    flight.addEventListener('click', function(event) {
         if (this.tagName === 'TH') {
             removeActive();
             this.style.color = '#fff';
             let elSort = this.children[0].children[1];
-            console.log(elSort);
-            flights = sortByKey(flights, this.dataset.sortexpression);
+            let order = '';
+
+            if (elSort.innerHTML === '↓') {
+                order = 'ASC';
+                elSort.innerHTML = '&uarr;';
+            } else {
+                order = 'DESC';
+                elSort.innerHTML = '&darr;';
+            }
+            flights = sortByKey(flights, this.dataset.sortexpression, order);
             renderTable(flights);
         }
     });
@@ -70,10 +78,12 @@ const removeFlights = () => {
     elTableBody.innerHTML = '';
 };
 
+// Helpers
+
 const sortByKey = (obj, key, order = 'ASC') => {
     return order === 'ASC'
         ? obj.sort((a, b) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0))
-        : obj.sort((a, b) => (a[key] < b[key] ? 1 : b[key] < a[key] ? -1 : 0))
+        : obj.sort((a, b) => (a[key] < b[key] ? 1 : b[key] < a[key] ? -1 : 0));
 };
 
 getFlights();

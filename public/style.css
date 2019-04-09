@@ -23,13 +23,13 @@ body {
     justify-content: center;
 }
 
-button{
+button {
     width: 90px;
     height: 30px;
 }
 
-section{
-    width: 70%;
+section {
+    width: 100%;
     margin: 50px auto;
     text-align: center;
     display: flex;
@@ -77,6 +77,7 @@ table tbody td {
     text-align: center;
 }
 
-span.arrowSort:hover {
-    color: #fff;
+span.divSortTable::after .asc {
+    content: '&darr;';
+    width: 5px;
 }
