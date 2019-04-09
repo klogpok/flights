@@ -5,24 +5,47 @@ const thFlightDeparts = document.querySelectorAll('#departTableHead th');
 const toggleSectionButtons = document.querySelectorAll('.toggleSection');
 const arrivalsSection = document.querySelector('#arrivals');
 const departsSection = document.querySelector('#departures');
+const searchCityInput = document.querySelector('#citySearch');
+const btnSearch = document.querySelector('#btn-search');
+const btnClear = document.querySelector('#btn-clear');
+
+console.log(btnClear);
 
 let elString = '';
 let keySort = 'arrival';
 let flights = [];
+let currentTable = elTableArrivalsBody;
+let currentThs = thFlightArrival;
+let currentDestination = 'from';
 
 const toggleTables = () => {
     [...toggleSectionButtons].forEach(button => {
-        button.addEventListener('click', event => {
+        button.addEventListener('click', function(event) {
+            clearActiveSection();
+            button.classList.toggle('active');
+
             if (event.target.textContent === 'Arrivals') {
                 arrivalsSection.classList.remove('hidden');
                 departsSection.classList.add('hidden');
-                init(elTableArrivalsBody, thFlightArrival, 'from');
+                currentTable = elTableArrivalsBody;
+                currentThs = thFlightArrival;
+                currentDestination = 'from';
+                init(currentTable, currentThs, currentDestination);
             } else {
                 arrivalsSection.classList.add('hidden');
                 departsSection.classList.remove('hidden');
-                init(elTableDepartsBody, thFlightDeparts, 'to');
+                currentTable = elTableDepartsBody;
+                currentThs = thFlightDeparts;
+                currentDestination = 'to';
+                init(currentTable, currentThs, currentDestination);
             }
         });
+    });
+};
+
+const clearActiveSection = () => {
+    [...toggleSectionButtons].forEach(button => {
+        button.classList.remove('active');
     });
 };
 
@@ -30,6 +53,7 @@ const toggleTables = () => {
 const sortEventHandler = (table, thFlight, destination) => {
     [...thFlight].forEach(flight => {
         flight.addEventListener('click', function() {
+            console.log(this);
             if (this.tagName === 'TH') {
                 removeActive(thFlight, this);
                 flights = sortByKey(flights, this.dataset.sortexpression, toggleOrder(this));
@@ -86,12 +110,13 @@ const renderTable = (table, flights, destination) => {
 
     flights.forEach(flight => {
         let toFrom = flight[`${destination}`];
+        let time = destination === 'from' ? flight.arrival : flight.departure;
         elString += `
         <tr>
           <td>${flight.by}</td>
           <td>${flight.id}</td>
           <td>${toFrom}</td>
-          <td>${flight.arrival}</td>
+          <td>${time}</td>
           <td>${flight.terminal}</td>
         </tr>
       `;
@@ -101,7 +126,18 @@ const renderTable = (table, flights, destination) => {
 
 const removeFlights = table => {
     table.innerHTML = '';
+    console.log(`remove table`);
 };
+
+btnClear.addEventListener('click', () => {
+    init(currentTable, currentThs, currentDestination);
+});
+
+btnSearch.addEventListener('click', event => {
+    console.log(event.target.value);
+});
+
+const citySearchOnChange = () => {};
 
 // Helpers
 const sortByKey = (obj, key, order = 'ASC') => {
@@ -113,7 +149,8 @@ const sortByKey = (obj, key, order = 'ASC') => {
 const init = (tableBody, thFlight, destination) => {
     sortEventHandler(tableBody, thFlight, destination);
     getFlights(tableBody, destination);
-    toggleTables();
 };
 
-init(elTableArrivalsBody, thFlightArrival, 'from');
+init(currentTable, currentThs, currentDestination);
+toggleTables();
+clearBtnHandler();

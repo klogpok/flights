@@ -57,7 +57,7 @@
         "id": "EZY-2084",
         "from": "Tel-Aviv",
         "to": "Barcelona",
-        "departure": "2018-03-25 12:40",
+        "departure": "2018-03-25 13:30",
         "arrival": "2018-03-25 16:20",
         "terminal": "2",
         "by": "EasyJet"
@@ -75,8 +75,8 @@
         "id": "LY-2526",
         "from": "Tel-Aviv",
         "to": "Berlin",
-        "departure": "2018-03-22 12:40",
-        "arrival": "2018-03-22 16:20",
+        "departure": "2018-03-22 08:10",
+        "arrival": "2018-03-22 12:20",
         "terminal": "D",
         "by": "El Al"
     }

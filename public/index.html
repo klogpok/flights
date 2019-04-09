@@ -10,15 +10,32 @@
 
     <body>
         <div class="container">
-            <div class="row">
+            <!-- <div class="row">
                 <button class="toggleSection">Arrivals</button>
                 <button class="toggleSection">Departures</button>
+            </div> -->
+
+            <div class="header">
+                <ul>
+                    <li class="toggleSection active">Arrivals</li>
+                    <li class="toggleSection">Departures</li>
+                </ul>
+                <div class="header-search">
+                    <div class="city-search">
+                        <label for="citySearch">City</label>
+                        <input type="text" id="citySearch" />
+                    </div>
+                    <div class="search-btns">
+                        <button class="btn btn-search" id="btn-search">Search</button>
+                        <button class="btn btn-clear" id="btn-clear">Clear</button>
+                    </div>
+                </div>
             </div>
             <section id="arrivals" class="column">
                 <table id="arrivalTable">
-                    <caption>
+                    <!-- <caption>
                         <h1 id="arri-section">Arrivals</h1>
-                    </caption>
+                    </caption> -->
                     <thead id="arrivalTableHead">
                         <tr role="row" class="even">
                             <th
@@ -89,9 +106,9 @@
 
             <section id="departures" class="column hidden">
                 <table id="departTable">
-                    <caption>
+                    <!-- <caption>
                         <h1 id="arri-section">Departures</h1>
-                    </caption>
+                    </caption> -->
                     <thead id="departTableHead">
                         <tr role="row" class="even">
                             <th
@@ -132,7 +149,7 @@
                             </th>
                             <th
                                 class="thFlight no-sort active sorting_disabled"
-                                data-sortexpression="arrival"
+                                data-sortexpression="departure"
                                 role="columnheader"
                                 rowspan="1"
                                 colspan="1"

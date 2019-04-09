@@ -13,6 +13,79 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.header ul {
+    margin: 50px 0 0;
+    padding: 0;
+    background-color: #122240;
+}
+
+.header ul li {
+    width: 150px;
+    height: 50px;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+    line-height: 50px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.header ul li:hover {
+    background-color: #f1a931;
+    color: #042e62;
+}
+
+.toggleSection.active {
+    background-color: #f1a931;
+    color: #042e62;
+}
+
+.header-search {
+    display: flex;
+    padding: 40px;
+    background-color: #3e4b6c;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.header-search .city-search {
+    margin-right: 30px;
+    font-size: 2rem;
+}
+
+.header-search label {
+    margin-right: 15px;
+}
+
+.header-search input {
+    width: 184px;
+    height: 26px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #adacac;
+    color: #4c4b4b;
+    font-size: 1.8rem;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.btn {
+    height: 30px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    border-color: #e7e7e7;
+}
+
 .column {
     display: flex;
     flex-direction: column;
@@ -21,6 +94,7 @@ body {
 .hidden {
     display: none;
 }
+
 .row {
     position: fixed;
     justify-content: center;
