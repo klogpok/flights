@@ -102,19 +102,9 @@ body {
     display: none;
 }
 
-.row {
-    position: fixed;
-    justify-content: center;
-}
-
-button {
-    width: 90px;
-    height: 30px;
-}
-
 section {
     width: 100%;
-    margin: 50px auto;
+    margin: 30px auto;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -134,7 +124,6 @@ table th {
     color: #f1a931;
     font: bold 1.6em arial;
     height: 31px;
-    /* border: 1px solid #042e62; */
     border-right: 1px solid #fff;
     vertical-align: middle;
     cursor: pointer;
