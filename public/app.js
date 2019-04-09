@@ -12,53 +12,75 @@ function toggle(type) {
     }
 }
 
-const elTableBody = document.querySelector('#arrivalTableBody');
-const thFlight = document.querySelectorAll('.thFlight');
+const elTableArrivals = document.querySelector('#arrivalTable');
+const elTableDeparts = document.querySelector('#departsTable');
+const elTableArrivalsBody = document.querySelector('#arrivalTableBody');
+const elTableDepartsBody = document.querySelector('#departsTableBody');
+const thFlightArrival = document.querySelectorAll('#arrivalTableHead th');
+
+//const thFlightDeparts = document.querySelectorAll('.thFlight');
 let elString = '';
 let keySort = 'arrival';
 let flights = [];
 
-[...thFlight].forEach(flight => {
-    flight.addEventListener('click', function(event) {
-        if (this.tagName === 'TH') {
-            removeActive();
-            this.style.color = '#fff';
-            let elSort = this.children[0].children[1];
-            let order = '';
-
-            if (elSort.innerHTML === '↓') {
-                order = 'ASC';
-                elSort.innerHTML = '&uarr;';
-            } else {
-                order = 'DESC';
-                elSort.innerHTML = '&darr;';
+// Order functionality event
+const sortEventHandler = (table, thFlight) => {
+    [...thFlight].forEach(flight => {
+        flight.addEventListener('click', function() {
+            if (this.tagName === 'TH') {
+                removeActive(thFlight, this);
+                flights = sortByKey(flights, this.dataset.sortexpression, toggleOrder(this));
+                renderTable(table, flights);
             }
-            flights = sortByKey(flights, this.dataset.sortexpression, order);
-            renderTable(flights);
-        }
-    });
-});
-
-const removeActive = () => {
-    [...thFlight].forEach(th => {
-        th.style.color = '#f1a931';
+        });
     });
 };
 
-const getFlights = () => {
+const toggleOrder = currentTh => {
+    let elSort = currentTh.children[0].children[1];
+    let order = '';
+
+    if (elSort.innerHTML === '↓') {
+        order = 'ASC';
+        elSort.innerHTML = '&uarr;';
+    } else {
+        order = 'DESC';
+        elSort.innerHTML = '&darr;';
+    }
+    return order;
+};
+
+const removeActive = (thFlight, activeTh) => {
+    [...thFlight].forEach(th => {
+        if (th !== activeTh) {
+            th.style.color = '#f1a931';
+            th.children[0].children[1].innerHTML = '&uarr;';
+        } else {
+            th.style.color = '#fff';
+        }
+    });
+};
+
+const getFlights = (table, destination) => {
     fetch('./flights.json')
         .then(data => data.json())
         .then(res => {
             if (res.length) {
-                flights = res;
-                sortedRes = sortByKey(res, keySort);
-                renderTable(sortedRes);
+                if (destination === 'Tel-Aviv') {
+                    flights = res.filter(
+                        flight => flight.to.toLowerCase() === destination.toLowerCase()
+                    );
+                } else {
+                    flights = res.filter(flight => flight.to.toLowerCase() !== 'tel-aviv');
+                }
+                sortedRes = sortByKey(flights, keySort);
+                renderTable(table, sortedRes);
             }
         });
 };
 
-const renderTable = flights => {
-    removeFlights();
+const renderTable = (table, flights) => {
+    removeFlights(table);
     elString = '';
     flights.forEach(flight => {
         elString += `
@@ -71,19 +93,23 @@ const renderTable = flights => {
         </tr>
       `;
     });
-    elTableBody.innerHTML = elString;
+    table.innerHTML = elString;
 };
 
-const removeFlights = () => {
-    elTableBody.innerHTML = '';
+const removeFlights = table => {
+    table.innerHTML = '';
 };
 
 // Helpers
-
 const sortByKey = (obj, key, order = 'ASC') => {
     return order === 'ASC'
         ? obj.sort((a, b) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0))
         : obj.sort((a, b) => (a[key] < b[key] ? 1 : b[key] < a[key] ? -1 : 0));
 };
 
-getFlights();
+const init = () => {
+    sortEventHandler(elTableArrivalsBody, thFlightArrival);
+    getFlights(elTableArrivalsBody, 'Tel-Aviv');
+};
+
+init();

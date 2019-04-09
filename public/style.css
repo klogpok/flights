@@ -9,6 +9,9 @@ body {
     background: #f2f6f8;
     display: flex;
     justify-content: center;
+    background-image: url('./img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .column {
     display: flex;
@@ -36,21 +39,29 @@ section {
     justify-content: center;
 }
 
+table {
+    border-collapse: collapse;
+}
+
 table caption h1 {
     font-size: 3rem;
 }
 
 table th {
-    width: 150px;
+    width: 155px;
     background: #042e62;
     color: #f1a931;
     font: bold 1.6em arial;
     height: 31px;
-    padding-top: 4px;
-    border: 1px solid #042e62;
+    /* border: 1px solid #042e62; */
+    border-right: 1px solid #fff;
     vertical-align: middle;
     cursor: pointer;
     transition: all 0.25s ease;
+}
+
+table th:last-child {
+    border-right: 1px solid #042e62;
 }
 
 table th label {
@@ -75,6 +86,7 @@ table tbody td {
     padding: 5px 3px 5px 6px;
     vertical-align: middle;
     text-align: center;
+    border: 1px solid #042e62;
 }
 
 span.divSortTable::after .asc {

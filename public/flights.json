@@ -3,7 +3,7 @@
         "id": "ISR-6090",
         "from": "Barcelona",
         "to": "Tel-Aviv",
-        "departure": "2018-02-25 12:40",
+        "departure": "2018-03-25 12:40",
         "arrival": "2018-03-25 16:20",
         "terminal": "3",
         "by": "El Al"
@@ -12,16 +12,16 @@
         "id": "ISR-6091",
         "from": "Paris",
         "to": "Tel-Aviv",
-        "departure": "2018-02-26 21:40",
+        "departure": "2018-03-26 21:40",
         "arrival": "2018-03-27 01:20",
         "terminal": "3",
         "by": "El Al"
     },
     {
-        "id": "ISR-6092",
+        "id": "LY-2522",
         "from": "Prague",
         "to": "Tel-Aviv",
-        "departure": "2018-02-25 16:50",
+        "departure": "2018-03-25 16:50",
         "arrival": "2018-03-25 22:50",
         "terminal": "3",
         "by": "El Al"
@@ -30,7 +30,7 @@
         "id": "ISR-6094",
         "from": "Rome",
         "to": "Tel-Aviv",
-        "departure": "2018-02-22 21:40",
+        "departure": "2018-03-22 21:40",
         "arrival": "2018-03-23 01:20",
         "terminal": "3",
         "by": "Italia Air"
@@ -39,9 +39,27 @@
         "id": "ISR-6095",
         "from": "Moscow",
         "to": "Tel-Aviv",
-        "departure": "2018-02-23 21:40",
+        "departure": "2018-03-23 21:40",
         "arrival": "2018-03-24 01:20",
         "terminal": "3",
         "by": "Aeroflot"
+    },
+    {
+        "id": "EZY-2083",
+        "from": "London",
+        "to": "Tel-Aviv",
+        "departure": "2018-03-16 21:40",
+        "arrival": "2018-03-17 01:20",
+        "terminal": "3",
+        "by": "EasyJet"
+    },
+    {
+        "id": "EZY-2084",
+        "from": "Tel-Aviv",
+        "to": "Barcelona",
+        "departure": "2018-03-25 12:40",
+        "arrival": "2018-03-25 16:20",
+        "terminal": "3",
+        "by": "El Al"
     }
 ]

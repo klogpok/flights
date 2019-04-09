@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 //const url = require('url');
 
-const server = http.createServer((req, res) => { 
+const server = http.createServer((req, res) => {
     let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
     let extname = path.extname(filePath);
     let contentType = 'text/html';
@@ -16,6 +16,9 @@ const server = http.createServer((req, res) => {
             contentType = 'text/css';
             break;
         case '.json':
+            contentType = 'application/json';
+            break;
+        case '.jpg':
             contentType = 'application/json';
             break;
     }
@@ -35,7 +38,7 @@ const server = http.createServer((req, res) => {
                 res.writeHead(500);
                 res.end(`Server Error: ${err.code}`);
             }
-        } else {            
+        } else {
             res.writeHead(200, { 'Content-Type': contentType });
             res.end(content, 'utf8');
         }
