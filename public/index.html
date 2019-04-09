@@ -11,10 +11,10 @@
     <body>
         <div class="container">
             <div class="row">
-                <button onclick="toggle('arri')">Arrivals</button>
-                <button onclick="toggle('dep')">departures</button>
+                <button class="toggleSection">Arrivals</button>
+                <button class="toggleSection">Departures</button>
             </div>
-            <section id="arri-section" class="column">
+            <section id="arrivals" class="column">
                 <table id="arrivalTable">
                     <caption>
                         <h1 id="arri-section">Arrivals</h1>
@@ -87,12 +87,12 @@
                 </table>
             </section>
 
-            <section id="dep-section" class="column hidden">
+            <section id="departures" class="column hidden">
                 <table id="departTable">
                     <caption>
                         <h1 id="arri-section">Departures</h1>
                     </caption>
-                    <thead>
+                    <thead id="departTableHead">
                         <tr role="row" class="even">
                             <th
                                 class="thFlight no-sort sorting_disabled"
@@ -120,7 +120,7 @@
                             </th>
                             <th
                                 class="thFlight no-sort sorting_disabled"
-                                data-sortexpression="from"
+                                data-sortexpression="to"
                                 role="columnheader"
                                 rowspan="1"
                                 colspan="1"

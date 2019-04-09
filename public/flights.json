@@ -50,7 +50,7 @@
         "to": "Tel-Aviv",
         "departure": "2018-03-16 21:40",
         "arrival": "2018-03-17 01:20",
-        "terminal": "3",
+        "terminal": "1",
         "by": "EasyJet"
     },
     {
@@ -59,7 +59,25 @@
         "to": "Barcelona",
         "departure": "2018-03-25 12:40",
         "arrival": "2018-03-25 16:20",
-        "terminal": "3",
+        "terminal": "2",
+        "by": "EasyJet"
+    },
+    {
+        "id": "EZY-2099",
+        "from": "Tel-Aviv",
+        "to": "Dublin",
+        "departure": "2018-03-28 12:40",
+        "arrival": "2018-03-28 16:20",
+        "terminal": "E",
+        "by": "EasyJet"
+    },
+    {
+        "id": "LY-2526",
+        "from": "Tel-Aviv",
+        "to": "Berlin",
+        "departure": "2018-03-22 12:40",
+        "arrival": "2018-03-22 16:20",
+        "terminal": "D",
         "by": "El Al"
     }
 ]
