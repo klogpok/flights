@@ -19,7 +19,7 @@ let searchValue = '';
 
 const toggleTables = () => {
     [...toggleSectionButtons].forEach(button => {
-        button.addEventListener('click', function(event) {
+        button.addEventListener('click', function (event) {
             clearActiveSection();
             button.classList.toggle('active');
 
@@ -51,7 +51,7 @@ const clearActiveSection = () => {
 // Order functionality event
 const sortEventHandler = (table, thFlight, destination) => {
     [...thFlight].forEach(flight => {
-        flight.addEventListener('click', function() {
+        flight.addEventListener('click', function () {
             if (this.tagName === 'TH') {
                 removeActive(thFlight, this);
                 flights = sortByKey(flights, this.dataset.sortexpression, toggleOrder(this));
@@ -88,11 +88,12 @@ const toggleOrder = currentTh => {
 
 const setDefaultTh = () => {
     [...currentThs].forEach(th => {
-        if (th.dataset.sortexpression === 'arrival') {
-            removeActive(currentThs, th);
-            flights = sortByKey(flights, th.dataset.sortexpression, toggleOrder(th));
-            renderTable(currentTable, flights, currentDestination);
+        if (th.dataset.sortexpression === 'arrival' || th.dataset.sortexpression === 'departure') {
+            th.style.color = '#fff';
+        } else {
+            th.style.color = '#f1a931';
         }
+        th.children[0].children[1].innerHTML = '&uarr;';
     });
 };
 
@@ -179,10 +180,11 @@ const sortByKey = (obj, key, order = 'ASC') => {
 };
 
 const init = (tableBody, thFlight, destination, query = '') => {
-    //setDefaultTh();
-    sortEventHandler(tableBody, thFlight, destination);
+    setDefaultTh();
     getFlights(tableBody, destination, query);
 };
 
+sortEventHandler(elTableArrivalsBody, thFlightArrival, 'from');
+sortEventHandler(elTableDepartsBody, thFlightDeparts, 'to');
 init(currentTable, currentThs, currentDestination);
 toggleTables();

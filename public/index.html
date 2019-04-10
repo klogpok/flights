@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link rel="stylesheet" href="style.css" />
-        <title>Flights</title>
-    </head>
 
-    <body>
-        <div class="container">
-            <div class="title">
-                <h1>Flights Scheduler</h1>
-            </div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+	<link rel="stylesheet" href="style.css" />
+	<title>Flights</title>
+</head>
 
-            <div class="header">
-                <ul>
-                    <li class="toggleSection active">Arrivals</li>
-                    <li class="toggleSection">Departures</li>
-                </ul>
-                <div class="header-search">
-                    <div class="city-search">
-                        <label for="citySearch">City</label>
+<body>
+	<div class="container">
+		<div class="title">
+			<h1>Flights Scheduler</h1>
+		</div>
+
+		<div class="header">
+			<ul>
+				<li class="toggleSection active">Arrivals</li>
+				<li class="toggleSection">Departures</li>
+			</ul>
+			<div class="header-search">
+				<div class="city-search">
+					<label for="citySearch">City</label>
                         <input type="text" id="citySearch" />
                     </div>
                     <div class="search-btns">
@@ -105,9 +107,6 @@
 
             <section id="departures" class="column hidden">
                 <table id="departTable">
-                    <!-- <caption>
-                        <h1 id="arri-section">Departures</h1>
-                    </caption> -->
                     <thead id="departTableHead">
                         <tr role="row" class="even">
                             <th
