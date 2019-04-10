@@ -107,7 +107,7 @@ const getFlights = (table, destination, query) => {
                         flights = res.filter(
                             flight =>
                                 flight.to.toLowerCase() === 'tel-aviv' &&
-                                flight.from.toLowerCase() === query.toLowerCase()
+                                query.toLowerCase() === flight.from.toLowerCase().slice(0, query.length)
                         );
                     } else {
                         flights = res.filter(flight => flight.to.toLowerCase() === 'tel-aviv');
@@ -117,7 +117,7 @@ const getFlights = (table, destination, query) => {
                         flights = res.filter(
                             flight =>
                                 flight.to.toLowerCase() !== 'tel-aviv' &&
-                                flight.to.toLowerCase() === query.toLowerCase()
+                                query.toLowerCase() === flight.to.toLowerCase().slice(0, query.length)
                         );
                     } else {
                         flights = res.filter(flight => flight.to.toLowerCase() !== 'tel-aviv');
