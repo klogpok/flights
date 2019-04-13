@@ -7,14 +7,12 @@ const server = http.createServer((req, res) => {
     let contentType = 'text/html';
     let myUrl = url.parse(req.url, true);
 
-    //console.log(myUrl.pathname);
-
     let filePath = path.join(
         __dirname,
         'public',
         myUrl.pathname === '/' ? 'index.html' : myUrl.pathname.slice(1)
     );
-    //console.log(req.url.slice(1));
+
     let extname = myUrl.pathname.split('.')[1];
 
     switch (extname) {
