@@ -8,6 +8,7 @@ const departsSection = document.querySelector('#departures');
 const searchCityInput = document.querySelector('#citySearch');
 const btnSearch = document.querySelector('#btn-search');
 const btnClear = document.querySelector('#btn-clear');
+const spinner = document.querySelector('.lds-ring');
 
 let elString = '';
 let keySort = 'arrival';
@@ -19,7 +20,7 @@ let searchValue = '';
 
 const toggleTables = () => {
     [...toggleSectionButtons].forEach(button => {
-        button.addEventListener('click', function (event) {
+        button.addEventListener('click', function(event) {
             clearActiveSection();
             button.classList.toggle('active');
 
@@ -51,7 +52,7 @@ const clearActiveSection = () => {
 // Order functionality event
 const sortEventHandler = (table, thFlight, destination) => {
     [...thFlight].forEach(flight => {
-        flight.addEventListener('click', function () {
+        flight.addEventListener('click', function() {
             if (this.tagName === 'TH') {
                 removeActive(thFlight, this);
                 flights = sortByKey(flights, this.dataset.sortexpression, toggleOrder(this));
@@ -97,35 +98,13 @@ const setDefaultTh = () => {
     });
 };
 
-const getFlights = (table, destination, query) => {
-    fetch('./flights.json')
+const getFlights = (table, destination, searchValue) => {
+    fetch(`./flights.json?q=${destination}&&search=${searchValue}`)
         .then(data => data.json())
         .then(res => {
-            if (res.length) {
-                if (destination === 'from') {
-                    if (query) {
-                        flights = res.filter(
-                            flight =>
-                                flight.to.toLowerCase() === 'tel-aviv' &&
-                                query.toLowerCase() === flight.from.toLowerCase().slice(0, query.length)
-                        );
-                    } else {
-                        flights = res.filter(flight => flight.to.toLowerCase() === 'tel-aviv');
-                    }
-                } else {
-                    if (query) {
-                        flights = res.filter(
-                            flight =>
-                                flight.to.toLowerCase() !== 'tel-aviv' &&
-                                query.toLowerCase() === flight.to.toLowerCase().slice(0, query.length)
-                        );
-                    } else {
-                        flights = res.filter(flight => flight.to.toLowerCase() !== 'tel-aviv');
-                    }
-                }
-                sortedRes = sortByKey(flights, keySort);
-                renderTable(table, sortedRes, destination);
-            }
+            flights = res;
+            sortedRes = sortByKey(res, keySort);
+            renderTable(table, sortedRes, destination);
         });
 };
 
