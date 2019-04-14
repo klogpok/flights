@@ -1,6 +1,7 @@
 :root {
     box-sizing: border-box;
     font-size: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
 }
 
 .header ul {
+    display: flex;
     margin: 20px 0 0;
     padding: 0;
     background-color: #122240;
@@ -36,7 +38,7 @@ body {
     height: 50px;
     padding: 0;
     list-style: none;
-    display: inline-block;
+    /* display: inline-block; */
     line-height: 50px;
     font-size: 2.2rem;
     font-weight: bold;
@@ -168,8 +170,6 @@ span.divSortTable::after .asc {
     content: '&darr;';
     width: 5px;
 }
-
-// Spinner
 
 .lds-ring {
     display: inline-block;
